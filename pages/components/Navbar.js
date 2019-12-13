@@ -1,3 +1,4 @@
+import Link from 'next/link';
 
 const Navbar = (props) => {
 
@@ -5,8 +6,8 @@ const Navbar = (props) => {
     <nav className="c-nav">
       <h2 className="c-nav__header">Login Practice</h2>
       <ul className="c-nav__buttonList">
-        <li className="c-nav__button">Home</li>
-        <li className="c-nav__button">Login</li>
+        <li className="c-nav__button"><Link href="/">Home</Link></li>
+        <li className="c-nav__button"><Link href="/login">Login</Link></li>
       </ul>
 
       {style()}
@@ -22,7 +23,6 @@ function style() {
         width: 100%;
         background-color: var(--sec-color);
         color: white;
-        font-family: sans-serif;
         height: 4rem;
         display: flex;
         margin: 0;
@@ -44,9 +44,14 @@ function style() {
       }
 
       .c-nav__button {
-        width: 4rem;
+        width: 5rem;
         align-self: center;
-        cursor: pointer;
+      }
+
+      .c-nav__button a {
+        color: white;
+        font-size: 1.2rem;
+        text-decoration: none;
       }
     `}</style>
   )
