@@ -1,8 +1,5 @@
 import Layout from './components/Layout'
 
-//Main Objective: Create log-in form, and css
-//Bonus: set up API for initial login
-
 const Login = (props) => {
 
   return (
