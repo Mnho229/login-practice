@@ -1,29 +1,49 @@
-import Layout from './components/Layout'
+import Layout from './components/Layout';
+import {useState} from 'react';
 
 const Login = (props) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const makeHandleChange = (fn) => (event) => {
+    fn(event.target.value);
+  }
+  const userHC = makeHandleChange(setUsername);
+  const passHC = makeHandleChange(setPassword);
+
+  const onSubmit = () => {
+
+  }
 
   return (
     <Layout>
+      <p>Username: {username}</p>
+      <p>Password: {password}</p>
       <section className="l-container">
-        <div className="c-login">
-          <div className="c-login__input">
-            <label for="Username" className="c-login__label">Username</label>
-            <input 
-              name="Username" 
-              label="Username" 
-              className="c-login__field" />
-          </div>
-          <div className="c-login__input">
-            <label for="Password" className="c-login__label">Password</label>
-            <input 
-              name="Password" 
-              type="password"
-              label="Password" 
-              className="c-login__field" />
-          </div>
+        <form onSubmit={onSubmit}>
+          <div className="c-login">
+            <h2 className="c-login__header">Account Login</h2>
+            <div className="c-login__input">
+              <label htmlFor="Username" className="c-login__label">Username</label>
+              <input 
+                name="Username" 
+                label="Username" 
+                className="c-login__field"
+                onChange={userHC} />
+            </div>
+            <div className="c-login__input">
+              <label htmlFor="Password" className="c-login__label">Password</label>
+              <input 
+                name="Password" 
+                type="password"
+                label="Password" 
+                className="c-login__field"
+                onChange={passHC} />
+            </div>
 
-          <input className="c-login__submit" type="submit" value="Login" />
-        </div>
+            <input className="c-login__submit" type="submit" value="Login" />
+          </div>
+        </form>
       </section>
 
       {style()}
@@ -45,6 +65,11 @@ function style() {
       .c-login {
         padding: 2rem;
         border: 1px solid lightgray;
+      }
+
+      .c-login__header {
+        text-align: center;
+        margin-top: 0;
       }
 
       .c-login__input {

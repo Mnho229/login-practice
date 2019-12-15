@@ -6,8 +6,8 @@ const Navbar = (props) => {
     <nav className="c-nav">
       <h2 className="c-nav__header">Login Practice</h2>
       <ul className="c-nav__buttonList">
-        <li className="c-nav__button"><Link href="/">Home</Link></li>
-        <li className="c-nav__button"><Link href="/login">Login</Link></li>
+        <li className="c-nav__button"><Link href="/"><a>Home</a></Link></li>
+        <li className="c-nav__button"><Link href="/login"><a>Login</a></Link></li>
       </ul>
 
       {style()}

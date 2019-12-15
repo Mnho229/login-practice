@@ -2,7 +2,7 @@ This project was bootstrapped with NextJS.
 
 ## Next Personal Objective
 
-Add header to log in, css, start jwt
+JWT
 
 ## Purpose
 
