@@ -1,3 +1,5 @@
+import getConfig from 'next/config';
+const { publicRuntimeConfig } = getConfig();
 import Layout from './components/Layout';
 import {useState} from 'react';
 
@@ -11,8 +13,26 @@ const Login = (props) => {
   const userHC = makeHandleChange(setUsername);
   const passHC = makeHandleChange(setPassword);
 
-  const onSubmit = () => {
+  const onSubmit = async (event) => {
+    //Prevent progagating up
+    event.preventDefault();
+    
+    //make URL
+    const {APP_URL} = publicRuntimeConfig;
+    const url = `${APP_URL}/api/login`;
 
+    //Try fetch block (Incomplete)
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-cache'
+        },
+        body: JSON.stringify({ username, password })
+      })
+    }
   }
 
   return (
