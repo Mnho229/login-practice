@@ -1,6 +1,9 @@
 import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
+
 import Layout from './components/Layout';
+
+import { login } from '../utils/auth';
 import {useState} from 'react';
 
 const Login = (props) => {
@@ -23,6 +26,7 @@ const Login = (props) => {
 
     //Try fetch block (Incomplete)
     try {
+      //the request response
       const response = await fetch(url, {
         method: 'POST',
         credentials: 'include',
@@ -32,6 +36,18 @@ const Login = (props) => {
         },
         body: JSON.stringify({ username, password })
       })
+      //successful response
+      if (response.status === 200) {
+        //res returns an object with these two properties
+        //transform them into variables with deconstruction
+        const { jwt_token, jwt_token_expiry } = await response.json();
+
+        //follow up request after successfully retrieving token
+        await login({ jwt_token, jwt_token_expiry});
+      } else {
+        console.log("Login failed");
+        
+      }
     }
   }
 
