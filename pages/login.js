@@ -46,8 +46,11 @@ const Login = (props) => {
         await login({ jwt_token, jwt_token_expiry});
       } else {
         console.log("Login failed");
-        
+        let error = new Error(response.statusText);
+        throw error;
       }
+    } catch (error) {
+      console.error('you now have an error', error);
     }
   }
 
